@@ -34,7 +34,7 @@ Using smart contracts and decentralized ledger technology, we empower safer and 
 
 ## 🛠️ Technologies Used
 
-- 🪙 **Blockchain Platforms:** Ethereum / Hyperledger
+- 🪙 **Blockchain Platforms:** Ethereum Sepolia Testnet
 - 📜 **Smart Contracts:** Solidity
 - 🌐 **Web3 Integration:** Node.js, React
 
