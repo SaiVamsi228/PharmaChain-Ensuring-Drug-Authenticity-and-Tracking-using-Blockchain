@@ -1,0 +1,1001 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "enum PharmaChain.Role",
+				"name": "role",
+				"type": "uint8"
+			}
+		],
+		"name": "assignRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "pharmacist",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "patientHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "BatchDispensed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "riskLevel",
+				"type": "string"
+			}
+		],
+		"name": "BatchRecalled",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "manufacturer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "qrCodeHash",
+				"type": "string"
+			}
+		],
+		"name": "BatchRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "BatchStatusUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			}
+		],
+		"name": "BatchTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			}
+		],
+		"name": "completeRecall",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expiryDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string[]",
+				"name": "equipmentIds",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "qrCodeHash",
+				"type": "string"
+			}
+		],
+		"name": "createBatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "defectId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "severity",
+				"type": "string"
+			}
+		],
+		"name": "DefectReported",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "patientHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "dispenseBatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "technician",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "certificationHash",
+				"type": "string"
+			}
+		],
+		"name": "EquipmentRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "EquipmentStatusUpdated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "riskLevel",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "notificationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initiatedDate",
+				"type": "uint256"
+			}
+		],
+		"name": "initiateRecall",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "userHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "logScan",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "accepted",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			}
+		],
+		"name": "logShipmentStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "serviceDate",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "technician",
+				"type": "string"
+			}
+		],
+		"name": "MaintenanceRecorded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			}
+		],
+		"name": "RecallCompleted",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "serviceDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "technician",
+				"type": "string"
+			}
+		],
+		"name": "recordMaintenance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "recoveredUnits",
+				"type": "uint256"
+			}
+		],
+		"name": "RecoveryUpdated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastCalibrationDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "certificationHash",
+				"type": "string"
+			}
+		],
+		"name": "registerEquipment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "defectId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "severity",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "reportDefect",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "sideEffectHash",
+				"type": "string"
+			}
+		],
+		"name": "reportSideEffect",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum PharmaChain.Role",
+				"name": "role",
+				"type": "uint8"
+			}
+		],
+		"name": "RoleAssigned",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "userHash",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "scanCount",
+				"type": "uint256"
+			}
+		],
+		"name": "ScanLogged",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "accepted",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			}
+		],
+		"name": "ShipmentStatusLogged",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "sideEffectHash",
+				"type": "string"
+			}
+		],
+		"name": "SideEffectReported",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "transferBatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "updateBatchStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "updateEquipmentStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "recoveredUnits",
+				"type": "uint256"
+			}
+		],
+		"name": "updateRecovery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "batches",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expiryDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "currentOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isRecalled",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isDispensed",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "qrCodeHash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "defects",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "defectId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "severity",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "equipment",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "equipmentId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastCalibrationDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "technician",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "certificationHash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "equipmentToBatches",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "recalls",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "recallId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "riskLevel",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "notificationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "initiatedDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "recoveredUnits",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "roles",
+		"outputs": [
+			{
+				"internalType": "enum PharmaChain.Role",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "scanCounts",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "transferHistory",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "batchId",
+				"type": "string"
+			}
+		],
+		"name": "verifyBatch",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isGenuine",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isRecalled",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isDispensed",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
